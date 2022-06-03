@@ -1,0 +1,58 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="container">
+    <div class="register">
+        <h2 class="title">Register</h2>
+        <br>
+        <form class="needs-validation" action="{% url 'register' %}" method="post" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" autofocus type="text" name="username" placeholder="Enter your Username" required>
+                <div class="invalid-feedback">
+                    Please choose a username!
+                </div>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="Enter your Email" required>
+                <div class="invalid-feedback">
+                    Please choose a email!
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Enter your Password" required>
+                    <div class="input-group-prepend">
+                        <button type="button" onclick="toggleVisibilityPassword('password', 'buttonVisibility')" class="input-group-text"><i id="buttonVisibility" class="fa fa-eye"></i></button>
+                    </div>
+                    <div class="invalid-feedback">
+                        Please choose a password!
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="password" name="confirmation" class="form-control" id="confirmation" placeholder="Enter confirm password" required>
+                    <div class="input-group-prepend">
+                        <button type="button" onclick="toggleVisibilityPassword('confirmation', 'buttonVisibility2')" class="input-group-text"><i id="buttonVisibility2" class="fa fa-eye"></i></button>
+                    </div>
+                    <div class="invalid-feedback">
+                        Please choose a Confirm password!
+                    </div>
+                </div>
+                {% if message %}
+                  <div style="color: #B81414;">{{ message }}</div>
+                {% endif %}
+            </div>
+            <p class="message">Already have an account? <a class="btn btn-outline-primary" href="{% url 'login' %}">Log In here.</a></p>
+            <div class="btn-right">
+                <input class="btn btn-primary" type="submit" value="Register">
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
